@@ -1,0 +1,17 @@
+{
+  "name": "cidr_viz",
+  "version": "1.0.0",
+  "description": "CIDR visualization webapp",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kindzerske, Matthew",
+  "license": "ISC",
+  "devDependencies": {},
+  "dependencies": {
+    "ip": "1.1.5",
+    "npm": "^6.9.0"
+  }
+}
