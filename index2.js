@@ -6,12 +6,12 @@ for (var i = 1; i <= 32; i++) {
    DECREASING_CIDR_MASKS.push(`/${i}`);
 }
 
-var accountspace = '10.82.208.0/20';
+var accountSpace = '10.82.208.0/20';
 var accountSpaceStruct = { 
-	firstIP: ip.cidrSubnet(accountspace).networkAddress,
-	firstIP_long: ip.toLong( ip.cidrSubnet(accountspace).networkAddress ),
-	lastIP: ip.cidrSubnet(accountspace).broadcastAddress,
-	lastIP_long: ip.toLong( ip.cidrSubnet(accountspace).broadcastAddress )
+	firstIP: ip.cidrSubnet(accountSpace).networkAddress,
+	firstIP_long: ip.toLong( ip.cidrSubnet(accountSpace).networkAddress ),
+	lastIP: ip.cidrSubnet(accountSpace).broadcastAddress,
+	lastIP_long: ip.toLong( ip.cidrSubnet(accountSpace).broadcastAddress )
 }
 
 console.log(accountSpaceStruct);
@@ -37,11 +37,11 @@ for (let cidrBlock of cidrBlocks) {
 	cidrBlock_lastIPlong 	= ip.toLong( cidrBlock_lastIP );
 
 	if (cidrBlock_firstIPlong < accountSpaceStruct.firstIP_long) {
-		console.log(`CIDR block (${cidrBlock} first ${cidrBlock_firstIP}) precedes the account space (${accountspace} first ${accountSpaceStruct.firstIP})`);
+		console.log(`CIDR block (${cidrBlock} first ${cidrBlock_firstIP}) precedes the account space (${accountSpace} first ${accountSpaceStruct.firstIP})`);
 		invalidCIDRBlocks = true;
 	}
 	if (cidrBlock_lastIPlong > accountSpaceStruct.lastIP_long) {
-		console.log(`CIDR block (${cidrBlock} last ${cidrBlock_lastIP}) exceeds the account space (${accountspace} last ${accountSpaceStruct.lastIP})`);
+		console.log(`CIDR block (${cidrBlock} last ${cidrBlock_lastIP}) exceeds the account space (${accountSpace} last ${accountSpaceStruct.lastIP})`);
 		invalidCIDRBlocks = true;
 	}
 }
@@ -133,6 +133,7 @@ while (accountCovered == false) {
 //  x algorithm to accomodate one cidr block.
 //  x algorithm development to accomodate two cidrBlocks.
 //		will need to innovate the adjacent cidr blcok spaces, see the TODO.
+//  create a module out of the above.
 //  unit test framework
 		// cidr block precedes
 		// cidr block excedes
