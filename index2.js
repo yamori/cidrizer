@@ -18,8 +18,10 @@ console.log(accountSpaceStruct);
 
 // Bad cidrBlocks, precede and exceeding.  Overlapping
 // var cidrBlocks = [ '10.82.217.128/27', '10.82.217.0/24', '10.1.244.0/29', '10.253.244.0/29' ];
-// Valid cideBlocks
-var cidrBlocks = [ '10.82.217.128/27', '10.82.219.0/24' ];
+// Valid cideBlocks, non-adjaecnt
+// var cidrBlocks = [ '10.82.217.128/27', '10.82.219.0/24' ];
+// Valid cideBlocks, with some adjacent
+var cidrBlocks = [ '10.82.217.128/27', '10.82.218.0/27', '10.82.218.32/27' ];
 
 // Sort the cidr blocks.
 cidrBlocks.sort(function(a, b){
@@ -61,14 +63,18 @@ var orderOfIPTargets_long = [];
 for (let cidrBlock of cidrBlocks) {
 	cidrBlock_FrontIP 		= ip.cidrSubnet(cidrBlock).networkAddress
 	cidrBlock_FrontIP_long 	= ip.toLong( cidrBlock_FrontIP );
-	orderOfIPTargets_long.push(cidrBlock_FrontIP_long-1);
-	// Note, define the boundary as the previous IP
-	//TODO, check to make sure the previous entry isn't the same.
+	// Check if the previously added block is adjacent, 
+	// Only add if there is no adjacency
+	if (orderOfIPTargets_long.length > 0 && 
+		orderOfIPTargets_long[orderOfIPTargets_long.length-1] != (cidrBlock_FrontIP_long-1)) {
+		orderOfIPTargets_long.push(cidrBlock_FrontIP_long-1);
+		// Note, defines the boundary as the previous IP (<)
+	}
 	
 	cidrBlock_BackIP 		= ip.cidrSubnet(cidrBlock).broadcastAddress
 	cidrBlock_BackIP_long 	= ip.toLong( cidrBlock_BackIP );
 	orderOfIPTargets_long.push(cidrBlock_BackIP_long);
-	// Note, here the last IP is the boundary.
+	// Note, here the last IP is the boundary (>=)
 }
 // Add the last account IP
 orderOfIPTargets_long.push(accountSpaceStruct.lastIP_long);
@@ -125,7 +131,7 @@ while (accountCovered == false) {
 //  x cidrBlock checks (2), plus error messages.
 //  x sort the cirdblocks.
 //  x algorithm to accomodate one cidr block.
-//  algorithm development to accomodate two cidrBlocks.
+//  x algorithm development to accomodate two cidrBlocks.
 //		will need to innovate the adjacent cidr blcok spaces, see the TODO.
 //  unit test framework
 		// cidr block precedes
