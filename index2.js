@@ -20,7 +20,7 @@ console.log(accountSpaceStruct);
 // var cidrBlocks = [ '10.82.217.128/27', '10.82.217.0/24', '10.1.244.0/29', '10.253.244.0/29' ];
 // Valid cideBlocks, non-adjaecnt
 // var cidrBlocks = [ '10.82.217.128/27', '10.82.219.0/24' ];
-// Valid cideBlocks, with some adjacent
+// Valid ciderBlocks, with some adjacent
 var cidrBlocks = [ '10.82.217.128/27', '10.82.218.0/27', '10.82.218.32/27' ];
 
 // Sort the cidr blocks.
@@ -79,7 +79,6 @@ for (let cidrBlock of cidrBlocks) {
 // Add the last account IP
 orderOfIPTargets_long.push(accountSpaceStruct.lastIP_long);
 console.log(orderOfIPTargets_long);
-//return;
 
 // The algorithm
 var currentIP = accountSpaceStruct.firstIP;
@@ -133,7 +132,7 @@ while (accountCovered == false) {
 //  x algorithm to accomodate one cidr block.
 //  x algorithm development to accomodate two cidrBlocks.
 //		will need to innovate the adjacent cidr blcok spaces, see the TODO.
-//  create a module out of the above.
+//  x create a module out of the above.
 //  unit test framework
 		// cidr block precedes
 		// cidr block excedes
