@@ -5,13 +5,14 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "author": "Kindzerske, Matthew",
   "license": "ISC",
   "devDependencies": {},
   "dependencies": {
     "ip": "1.1.5",
+    "mocha": "^6.1.4",
     "npm": "^6.9.0"
   }
 }
