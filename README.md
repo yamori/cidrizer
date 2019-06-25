@@ -6,6 +6,7 @@ A quick web-app to help accelerate.
 
 ## Backlog
 
+- Checkout the code again, problem with commits.
 - Better Readme
 - first nodejs page
 - first form
