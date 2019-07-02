@@ -14,23 +14,47 @@
     </header>
 
     <main>
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon3">Account Space</span>
-            </div>
-            <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
-        </div>
         <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text">CIDR Blocks</span>
             </div>
-            <textarea class="form-control" aria-label="With textarea"></textarea>
+            <textarea id="user_input_cidr" class="form-control" aria-label="With textarea"></textarea>
         </div>
+        <button id="blah" class="btn btn-primary">Submit</button>
+
     </main>
+
+
 
     <footer>
         <% include ../partials/footer %>
     </footer>
+
+    <script>
+        $(document).ready(function () {
+            $("#blah").click(function () {
+                console.log('started button event');
+                userInputForm = $('#user_input_cidr').val();
+                $.ajax({
+                    url: window.location + "do_cidr/",
+                    type: "GET",
+                    data: "userInput=" + userInputForm,
+                    dataType: "text",
+                    success: function (response, status, http) {
+                        if (response) {
+                            console.log('AJAX worked!');
+                            console.log(response);
+                        }
+                    },
+                    error: function (error) {
+                        alert('error; ' + error);
+                        console.log(error);
+                    }
+                });
+                console.log('ended button event');
+            });
+        });
+    </script>
 
 </body>
 

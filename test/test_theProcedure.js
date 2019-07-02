@@ -44,7 +44,7 @@ describe('CIDRIZER module', function () {
 
         var adjacent_cidr_blocks = [ '10.82.217.128/27', '10.82.219.0/24' ];
 
-        it('should detect incorect cidr blocks relative to the account', function () {
+        it('should properly process valid cidr blocks', function () {
             var results = cidrizer.doLowestBlocking(accountSpace, adjacent_cidr_blocks);
             // `results.cidrBlockingResults` will look as follows:
             // [ '10.82.208.0/21',
