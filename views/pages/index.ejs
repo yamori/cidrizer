@@ -37,9 +37,10 @@
                 userInputForm = $('#user_input_cidr').val();
                 $.ajax({
                     url: window.location + "do_cidr/",
-                    type: "GET",
-                    data: "userInput=" + userInputForm,
-                    dataType: "text",
+                    type: "POST",
+                    data: JSON.stringify({userInput: userInputForm}),
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
                     success: function (response, status, http) {
                         if (response) {
                             console.log('AJAX worked!');

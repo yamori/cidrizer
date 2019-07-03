@@ -1,4 +1,5 @@
 var express = require('express');
+var bodyParser = require('body-parser');
 var app = express();
 
 var cidrizer = require('./modules/cidrizer.js');
@@ -7,13 +8,16 @@ const PORT_NUMBER = 8080;
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
+app.use( bodyParser.json({type:"*/*"}));
 
 // index page 
 app.get('/', function (req, res) {
     res.render('pages/index');
 });
 
-app.get('/do_cidr', function (req, res) {
+app.post('/do_cidr', function (req, res) {
+    var userInput = req.body.userInput;
+    console.log("/do_cidr - userInput: " + userInput);
     res.json('{"success" : "Updated Successfully", "status" : 200}');
 });
 

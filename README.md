@@ -11,7 +11,8 @@ A quick web-app to help accelerate.
 
 - x first nodejs page
 - x first form
-- submission of form content
+- x submission of form content
+- bring in jquery + bootstrap as assets.
 - parsing, then executing the module
 - returning the info
 - 'insert examples' button, with multiple spacing.
