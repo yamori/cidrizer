@@ -18,6 +18,7 @@ app.get('/', function (req, res) {
 app.post('/do_cidr', function (req, res) {
     var userInput = req.body.userInput;
     console.log("/do_cidr - userInput: " + userInput);
+    console.log(JSON.stringify(userInput));
     res.json('{"success" : "Updated Successfully", "status" : 200}');
 });
 

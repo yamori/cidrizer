@@ -12,6 +12,31 @@ for (var i = 1; i <= 32; i++) {
 
 var cidrIzer = function () {
 
+    function parseForBlocks(text) {
+        // This function will parse the text from an html form
+        var linesSplit = text.split("\n");
+
+        var accountSpace = "";
+        var cidrBlocks = [];
+        var cidrBlock;
+        for (index = 0; index < linesSplit.length; ++index) {
+            cidrBlock = linesSplit[index].trim();
+
+            // Check regex
+            if (!/^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/(3[0-2]|[1-2][0-9]|[0-9]))$/.test(cidrBlock)) {
+                return {errorMessage: `Doesn't appear to be valid CIDR: ${cidrBlock}`}
+            }
+
+            if (index == 0) {
+                accountSpace = cidrBlock;
+            } else {
+                cidrBlocks.push(cidrBlock);
+            }
+        }
+
+        return {accountSpace: accountSpace, cidrBlocks: cidrBlocks}
+    }
+
     function doLowestBlocking(accountSpace, cidrBlocks) {
 
         // Objects to return
@@ -132,7 +157,8 @@ var cidrIzer = function () {
     }
 
     return {
-        doLowestBlocking: doLowestBlocking
+        doLowestBlocking: doLowestBlocking,
+        parseForBlocks : parseForBlocks
     }
 }();
 
