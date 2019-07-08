@@ -7,6 +7,8 @@ A quick web-app to help accelerate.
 
 `npm test`
 
+`npm start`
+
 ## Backlog
 
 - x first nodejs page
@@ -15,10 +17,28 @@ A quick web-app to help accelerate.
 - x parsing,
 - x remove trailing line, empty line
 - x then executing the module
-- bring in jquery + bootstrap as assets.
+- design how info should be presented
 - returning the info
 - 'insert examples' button, with multiple spacing.
 - rendering errors first
 - rendering straight print-out of valid results
 - more fancy rendering
 - Better Readme
+- bring in jquery + bootstrap as assets.
+
+###
+
+How each line should appear:
+
+(overall block above)
+
+`cidr block, # of IPs, first, last`
+(highilght the ones specified)
+
+## Demo input text
+
+```
+10.82.208.0/20
+10.82.217.128/27
+10.82.219.0/24
+```
