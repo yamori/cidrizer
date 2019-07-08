@@ -42,17 +42,20 @@
                     dataType: "json",
                     contentType: "application/json; charset=utf-8",
                     success: function (response, status, http) {
-                        if (response) {
-                            console.log('AJAX worked!');
-                            console.log(response);
+                        var responseObject = JSON.parse(response);
+                        if (responseObject.errorMessage != undefined) {
+                            // Catch the error and display
+                            alert(responseObject.errorMessage);
+                        } else {
+                            // Assume it is fine
+                            console.log(responseObject);
                         }
                     },
                     error: function (error) {
-                        alert('error; ' + error);
-                        console.log(error);
+                        alert('hmm, something went wrong');
+                        // ... something unspecified.
                     }
                 });
-                console.log('ended button event');
             });
         });
     </script>

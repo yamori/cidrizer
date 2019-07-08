@@ -19,7 +19,14 @@ app.post('/do_cidr', function (req, res) {
     var userInput = req.body.userInput;
     console.log("/do_cidr - userInput: " + userInput);
     console.log(JSON.stringify(userInput));
-    res.json('{"success" : "Updated Successfully", "status" : 200}');
+    var parsedBlocks = cidrizer.parseForBlocks(userInput);
+    if (parsedBlocks.errorMessage != undefined) {
+        res.json(`{"errorMessage" : "${parsedBlocks.errorMessage}"}`);
+    } 
+
+    var results = cidrizer.doLowestBlocking(parsedBlocks.accountSpace, parsedBlocks.cidrBlocks);
+    console.log(results);
+    res.json('{"success" : "Updated Successfully"}');
 });
 
 app.listen(PORT_NUMBER);
