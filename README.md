@@ -26,9 +26,7 @@ A quick web-app to help accelerate.
 - Better Readme
 - bring in jquery + bootstrap as assets.
 
-###
-
-How each line should appear:
+### How each line should appear:
 
 (overall block above)
 
