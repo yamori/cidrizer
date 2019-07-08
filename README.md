@@ -12,9 +12,9 @@ A quick web-app to help accelerate.
 - x first nodejs page
 - x first form
 - x submission of form content
-- x parsing, 
-- remove trailing line, empty line
-- then executing the module
+- x parsing,
+- x remove trailing line, empty line
+- x then executing the module
 - bring in jquery + bootstrap as assets.
 - returning the info
 - 'insert examples' button, with multiple spacing.

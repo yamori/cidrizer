@@ -1,7 +1,7 @@
 var ip = require('ip');
 
-// Purpose of this module is to do all the heavy lifting for 
-// creating a lowest form of cidr representation given the 
+// Purpose of this module is to do all the heavy lifting for
+// creating a lowest form of cidr representation given the
 // account and cidr block inputs.
 
 // Create CIDR masks in descending order
@@ -22,12 +22,16 @@ var cidrIzer = function () {
         for (index = 0; index < linesSplit.length; ++index) {
             cidrBlock = linesSplit[index].trim();
 
+            // Don't try to arse an empty line.
+            if (cidrBlock.length == 0) { continue; }
+
             // Check regex
             if (!/^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/(3[0-2]|[1-2][0-9]|[0-9]))$/.test(cidrBlock)) {
                 return {errorMessage: `Doesn't appear to be valid CIDR: ${cidrBlock}`}
             }
 
-            if (index == 0) {
+            if (accountSpace.length == 0) {
+                // 'accountSpace' must get filled first
                 accountSpace = cidrBlock;
             } else {
                 cidrBlocks.push(cidrBlock);
@@ -97,7 +101,7 @@ var cidrIzer = function () {
         for (let cidrBlock of cidrBlocks) {
             cidrBlock_FrontIP = ip.cidrSubnet(cidrBlock).networkAddress
             cidrBlock_FrontIP_long = ip.toLong(cidrBlock_FrontIP);
-            // Check if the previously added block is adjacent, 
+            // Check if the previously added block is adjacent,
             // Only add if there is no adjacency
             if (orderOfIPTargets_long.length > 0 &&
                 orderOfIPTargets_long[orderOfIPTargets_long.length - 1] != (cidrBlock_FrontIP_long - 1)) {

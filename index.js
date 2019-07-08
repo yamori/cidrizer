@@ -10,7 +10,7 @@ const PORT_NUMBER = 8080;
 app.set('view engine', 'ejs');
 app.use( bodyParser.json({type:"*/*"}));
 
-// index page 
+// index page
 app.get('/', function (req, res) {
     res.render('pages/index');
 });
@@ -22,7 +22,8 @@ app.post('/do_cidr', function (req, res) {
     var parsedBlocks = cidrizer.parseForBlocks(userInput);
     if (parsedBlocks.errorMessage != undefined) {
         res.json(`{"errorMessage" : "${parsedBlocks.errorMessage}"}`);
-    } 
+        return;
+    }
 
     var results = cidrizer.doLowestBlocking(parsedBlocks.accountSpace, parsedBlocks.cidrBlocks);
     console.log(results);

@@ -41,5 +41,14 @@ describe('CIDRIZER module', function () {
             // Detect the bad CIDR space
             assert.equal(results2.errorMessage.toUpperCase() === `Doesn't appear to be valid CIDR: ${badCIDRSpace}`.toUpperCase(), true);
         });
+
+        it('should ignore empty lines', function () {
+          var okAccountSpace = "10.1.1.0/28";
+          var inputText = `\n${okAccountSpace}\n\n${okAccountSpace}\n\n${okAccountSpace}\n`;
+          var results = cidrizer.parseForBlocks(inputText);
+          // Of the 7 lines above, only 3 should make it through
+          assert.equal(results.accountSpace.toUpperCase() === okAccountSpace.toUpperCase(), true);
+          assert.equal(results.cidrBlocks.length, 2);
+        });
     });
 });
