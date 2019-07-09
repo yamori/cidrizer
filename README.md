@@ -17,12 +17,11 @@ A quick web-app to help accelerate.
 - x parsing,
 - x remove trailing line, empty line
 - x then executing the module
-- design how info should be presented
-- returning the info
+- x design how info should be presented
+- returning the info, as a rendered page inserted into a div
 - 'insert examples' button, with multiple spacing.
-- rendering errors first
-- rendering straight print-out of valid results
-- more fancy rendering
+- returning+rendering errors
+- better style for the rendered returns.
 - Better Readme
 - bring in jquery + bootstrap as assets.
 

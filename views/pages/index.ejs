@@ -7,22 +7,84 @@
     <% include ../partials/head %>
 </head>
 
-<body class="container">
+<body>
 
     <header>
         <% include ../partials/header %>
     </header>
 
-    <main>
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text">CIDR Blocks</span>
+    <div class="container">
+        <div class="row">
+            <div class="col-4">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">CIDR Blocks</span>
+                    </div>
+                    <textarea id="user_input_cidr" class="form-control" aria-label="With textarea"></textarea>
+                </div>
+                <button id="blah" class="btn btn-primary">Submit</button>
             </div>
-            <textarea id="user_input_cidr" class="form-control" aria-label="With textarea"></textarea>
-        </div>
-        <button id="blah" class="btn btn-primary">Submit</button>
 
-    </main>
+            <div class="col-8">
+                <h4>Account</h4>
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th scope="col">CIDR</th>
+                            <th scope="col"># IPs</th>
+                            <th scope="col">First</th>
+                            <th scope="col">Last</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>10.82.208.0/20</td>
+                            <td>64</td>
+                            <td>10.82.208.0/20</td>
+                            <td>10.82.208.0/20</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h4>Lowest CIDR Blocking</h4>
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th scope="col">CIDR</th>
+                            <th scope="col"># IPs</th>
+                            <th scope="col">First</th>
+                            <th scope="col">Last</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>10.82.208.0/20</td>
+                            <td>64</td>
+                            <td>10.82.208.0/20</td>
+                            <td>10.82.208.0/20</td>
+                        </tr>
+                        <tr>
+                            <td>10.82.208.0/20</td>
+                            <td>64</td>
+                            <td>10.82.208.0/20</td>
+                            <td>10.82.208.0/20</td>
+                        </tr>
+                        <tr>
+                            <td>10.82.208.0/20</td>
+                            <td>64</td>
+                            <td>10.82.208.0/20</td>
+                            <td>10.82.208.0/20</td>
+                        </tr>
+                        <tr>
+                            <td>10.82.208.0/20</td>
+                            <td>64</td>
+                            <td>10.82.208.0/20</td>
+                            <td>10.82.208.0/20</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
 
 
@@ -38,7 +100,7 @@
                 $.ajax({
                     url: window.location + "do_cidr/",
                     type: "POST",
-                    data: JSON.stringify({userInput: userInputForm}),
+                    data: JSON.stringify({ userInput: userInputForm }),
                     dataType: "json",
                     contentType: "application/json; charset=utf-8",
                     success: function (response, status, http) {
