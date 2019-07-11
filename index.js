@@ -2,6 +2,9 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
 
+// Used by the partials
+var ip = require('ip');
+
 var cidrizer = require('./modules/cidrizer.js');
 
 const PORT_NUMBER = 8080;
@@ -27,7 +30,7 @@ app.post('/do_cidr', function (req, res) {
 
     var results = cidrizer.doLowestBlocking(parsedBlocks.accountSpace, parsedBlocks.cidrBlocks);
     console.log(results);
-    res.render('partials/cidr_results', {results: results});
+    res.render('partials/cidr_results', {ip: ip, results: results});
 });
 
 app.listen(PORT_NUMBER);

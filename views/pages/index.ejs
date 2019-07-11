@@ -89,7 +89,6 @@
     <script>
         $(document).ready(function () {
             $("#blah").click(function () {
-                console.log('started button event');
                 userInputForm = $('#user_input_cidr').val();
                 $.ajax({
                     url: window.location + "do_cidr/",
@@ -98,7 +97,6 @@
                     dataType: "html",
                     contentType: "application/json; charset=utf-8",
                     success: function (response, status, http) {
-                        console.log(response);
                         $("#results_div").html(response);
                     },
                     error: function (error) {

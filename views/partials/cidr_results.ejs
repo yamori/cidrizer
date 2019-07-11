@@ -1,1 +1,19 @@
-<div><h1>Haza!!!!</h1></div>
+<h4>Account</h4>
+<table class="table table-sm">
+    <thead>
+        <tr>
+            <th scope="col">CIDR</th>
+            <th scope="col"># Hosts</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><%= results.accountCIDRBlock %></td>
+            <td><%= ip.cidrSubnet(results.accountCIDRBlock).numHosts %></td>
+            <td><%= ip.cidrSubnet(results.accountCIDRBlock).networkAddress %></td>
+            <td><%= ip.cidrSubnet(results.accountCIDRBlock).broadcastAddress %></td>
+        </tr>
+    </tbody>
+</table>
