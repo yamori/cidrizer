@@ -8,7 +8,7 @@ describe('CIDRIZER module', function () {
         var overlapping_and_outside_cidr_blocks =
             ['10.82.217.128/27', '10.82.217.0/24', '10.1.244.0/29', '10.253.244.0/29'];
 
-        it('should detect incorect cidr blocks relative to the account', function () {
+        it('should detect incorrect cidr blocks relative to the account', function () {
             var results = cidrizer.doLowestBlocking(accountSpace, overlapping_and_outside_cidr_blocks);
 
             // No valid results to return
@@ -40,11 +40,11 @@ describe('CIDRIZER module', function () {
     });
 
 
-    describe('core procedure - accomodating adjacent cidr blocks', function () {
+    describe('core procedure', function () {
 
         var adjacent_cidr_blocks = [ '10.82.217.128/27', '10.82.219.0/24' ];
 
-        it('should properly process valid cidr blocks', function () {
+        it('should properly process valid cidr blocks (including adjacent blocks)', function () {
             var results = cidrizer.doLowestBlocking(accountSpace, adjacent_cidr_blocks);
             // `results.cidrBlockingResults` will look as follows:
             // [ '10.82.208.0/21',
@@ -62,6 +62,19 @@ describe('CIDRIZER module', function () {
             // Check the two entries
             assert.equal(results.cidrBlockingResults[3], adjacent_cidr_blocks[0]);
             assert.equal(results.cidrBlockingResults[7], adjacent_cidr_blocks[1]);
+        });
+
+        it('should include the account level CIDR block', function () {
+            var results = cidrizer.doLowestBlocking(accountSpace, adjacent_cidr_blocks);
+            // Include the account level info
+            assert.equal(results.accountCIDRBlock, accountSpace);
+        });
+
+        it('should accomodate when the input is only the account space, no additional blocks', function () {
+            var results = cidrizer.doLowestBlocking(accountSpace, []);
+            // Include the account level info
+            assert.equal(results.accountCIDRBlock, accountSpace);
+            assert.equal(results.cidrBlockingResults[0], accountSpace);
         });
     });
 });

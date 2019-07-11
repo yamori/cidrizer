@@ -18,7 +18,10 @@ A quick web-app to help accelerate.
 - x remove trailing line, empty line
 - x then executing the module
 - x design how info should be presented
-- returning the info, as a rendered page inserted into a div
+- x partials for ajax response, static content
+- x fixing the results object (from the proc) for account level only
+- rendering the account level only
+- rendering account plus blocks via the partial
 - 'insert examples' button, with multiple spacing.
 - returning+rendering errors
 - better style for the rendered returns.

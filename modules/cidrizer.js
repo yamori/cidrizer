@@ -157,7 +157,9 @@ var cidrIzer = function () {
 
 
         // The Procedure was successful.
-        return { errorStruct: errorStruct, cidrBlockingResults: cidrBlockingResults }
+        return { errorStruct: errorStruct, 
+            cidrBlockingResults: cidrBlockingResults,
+            accountCIDRBlock: accountSpace }
     }
 
     return {
