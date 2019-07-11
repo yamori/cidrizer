@@ -25,7 +25,7 @@
                 <button id="blah" class="btn btn-primary">Submit</button>
             </div>
 
-            <div class="col-8">
+            <div id="results_div" class="col-8">
                 <h4>Account</h4>
                 <table class="table table-sm">
                     <thead>
@@ -74,12 +74,6 @@
                             <td>10.82.208.0/20</td>
                             <td>10.82.208.0/20</td>
                         </tr>
-                        <tr>
-                            <td>10.82.208.0/20</td>
-                            <td>64</td>
-                            <td>10.82.208.0/20</td>
-                            <td>10.82.208.0/20</td>
-                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -101,17 +95,11 @@
                     url: window.location + "do_cidr/",
                     type: "POST",
                     data: JSON.stringify({ userInput: userInputForm }),
-                    dataType: "json",
+                    dataType: "html",
                     contentType: "application/json; charset=utf-8",
                     success: function (response, status, http) {
-                        var responseObject = JSON.parse(response);
-                        if (responseObject.errorMessage != undefined) {
-                            // Catch the error and display
-                            alert(responseObject.errorMessage);
-                        } else {
-                            // Assume it is fine
-                            console.log(responseObject);
-                        }
+                        console.log(response);
+                        $("#results_div").html(response);
                     },
                     error: function (error) {
                         alert('hmm, something went wrong');

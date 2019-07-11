@@ -21,13 +21,13 @@ app.post('/do_cidr', function (req, res) {
     console.log(JSON.stringify(userInput));
     var parsedBlocks = cidrizer.parseForBlocks(userInput);
     if (parsedBlocks.errorMessage != undefined) {
-        res.json(`{"errorMessage" : "${parsedBlocks.errorMessage}"}`);
+        res.render('partials/cidr_error', {errorMessage: parsedBlocks.errorMessage});
         return;
     }
 
     var results = cidrizer.doLowestBlocking(parsedBlocks.accountSpace, parsedBlocks.cidrBlocks);
     console.log(results);
-    res.json('{"success" : "Updated Successfully"}');
+    res.render('partials/cidr_results', {results: results});
 });
 
 app.listen(PORT_NUMBER);
