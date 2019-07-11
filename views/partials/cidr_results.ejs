@@ -10,10 +10,50 @@
     </thead>
     <tbody>
         <tr>
-            <td><%= results.accountCIDRBlock %></td>
-            <td><%= ip.cidrSubnet(results.accountCIDRBlock).numHosts %></td>
-            <td><%= ip.cidrSubnet(results.accountCIDRBlock).networkAddress %></td>
-            <td><%= ip.cidrSubnet(results.accountCIDRBlock).broadcastAddress %></td>
+            <td>
+                <%= results.accountCIDRBlock %>
+            </td>
+            <td>
+                <%= ip.cidrSubnet(results.accountCIDRBlock).numHosts %>
+            </td>
+            <td>
+                <%= ip.cidrSubnet(results.accountCIDRBlock).networkAddress %>
+            </td>
+            <td>
+                <%= ip.cidrSubnet(results.accountCIDRBlock).broadcastAddress %>
+            </td>
         </tr>
     </tbody>
 </table>
+
+<% if (results.cidrBlockingResults.length > 1) { %>
+    <h4>Lowest CIDR Blocking</h4>
+    <table class="table table-sm">
+        <thead>
+            <tr>
+                <th scope="col">CIDR</th>
+                <th scope="col"># Hosts</th>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (let cidrBlock of results.cidrBlockingResults) { %>
+                <tr>
+                    <td>
+                        <%= cidrBlock %>
+                    </td>
+                    <td>
+                        <%= ip.cidrSubnet(cidrBlock).numHosts %>
+                    </td>
+                    <td>
+                        <%= ip.cidrSubnet(cidrBlock).networkAddress %>
+                    </td>
+                    <td>
+                        <%= ip.cidrSubnet(cidrBlock).broadcastAddress %>
+                    </td>
+                </tr>
+                <% } %>
+        </tbody>
+    </table>
+    <% } %>

@@ -21,10 +21,11 @@ A quick web-app to help accelerate.
 - x partials for ajax response, static content
 - x fixing the results object (from the proc) for account level only
 - x rendering the account level only
-- rendering account plus blocks via the partial
+- x rendering account plus blocks via the partial
 - 'insert examples' button, with multiple spacing.
 - returning+rendering errors
 - better style for the rendered section, clean up the first page.
+- highlight the provided blocks, not the filler
 - Better Readme
 - bring in jquery + bootstrap as assets.
 
