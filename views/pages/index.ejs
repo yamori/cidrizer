@@ -15,17 +15,17 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-4">
+            <div class="col-5">
                 <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">CIDR Blocks</span>
-                    </div>
-                    <textarea id="user_input_cidr" class="form-control" aria-label="With textarea"></textarea>
+                    <textarea id="user_input_cidr" class="form-control" aria-label="With textarea"  rows="5" placeholder="10.82.208.0/20 (entire account)&#10; (subsequent lines are sub-blocks)&#10;10.82.218.0/24&#10;10.82.208.0/24 (order doesn't matter)&#10; (try some 'examples' below!)"></textarea>
                 </div>
                 <button id="blah" class="btn btn-primary">Submit</button>
+                <button id="insertExamplesButton" class="btn btn-primary" onclick "insertExample();">Insert Example</button>
+                <button id="clearInputButton" class="btn btn-primary" onclick "insertExample();">Clear</button>
             </div>
 
-            <div id="results_div" class="col-8">
+
+            <div id="results_div" class="col-7">
                 <h4>Account</h4>
                 <table class="table table-sm">
                     <thead>
@@ -105,6 +105,28 @@
                     }
                 });
             });
+        });
+
+        var insertedExampleIndex = -1;
+        var exampleBank = ['10.82.208.0/20\n10.82.217.128/27\n10.82.219.0/24', '192.168.100.14/24', '10.1.0.0/20\n10.1.2.0/24\n10.1.7.0/28'];
+        function insertExample() {
+            var newIndex = Math.floor(Math.random() * exampleBank.length);
+            while (newIndex == insertedExampleIndex) {
+                // Don't display the same example consecutively
+                newIndex = Math.floor(Math.random() * exampleBank.length);
+            }
+            insertedExampleIndex = newIndex;
+            $('#user_input_cidr').val(exampleBank[insertedExampleIndex]);
+        }
+        $('#insertExamplesButton').on('click', function (event) {
+            event.preventDefault(); // To prevent following the link (optional)
+            insertExample();
+        });
+
+        // Clear the input button
+        $('#clearInputButton').on('click', function (event) {
+            event.preventDefault(); // To prevent following the link (optional)
+            $('#user_input_cidr').val('');
         });
     </script>
 
