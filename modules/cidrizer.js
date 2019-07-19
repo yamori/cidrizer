@@ -101,28 +101,30 @@ var cidrIzer = function () {
         for (let cidrBlock of cidrBlocks) {
             cidrBlock_FrontIP = ip.cidrSubnet(cidrBlock).networkAddress
             cidrBlock_FrontIP_long = ip.toLong(cidrBlock_FrontIP);
-            // Check if the previously added block is adjacent,
-            // Only add if there is no adjacency
-            if (orderOfIPTargets_long.length > 0 &&
-                orderOfIPTargets_long[orderOfIPTargets_long.length - 1] != (cidrBlock_FrontIP_long - 1)) {
+
+            if (cidrBlock_FrontIP_long == accountSpaceStruct.firstIP_long) {
+                // Skip this, as the algorithm starts here and isn't a target
+            } else if (orderOfIPTargets_long.length > 0 &&
+                orderOfIPTargets_long[orderOfIPTargets_long.length - 1] == (cidrBlock_FrontIP_long - 1)) {
+                // Don't add as it was included with previous block's BackIP
+            } else {
                 orderOfIPTargets_long.push(cidrBlock_FrontIP_long - 1);
-                // Note, defines the boundary as the previous IP (<)
             }
 
             cidrBlock_BackIP = ip.cidrSubnet(cidrBlock).broadcastAddress
             cidrBlock_BackIP_long = ip.toLong(cidrBlock_BackIP);
             orderOfIPTargets_long.push(cidrBlock_BackIP_long);
-            // Note, here the last IP is the boundary (>=)
         }
         // Add the last account IP
         orderOfIPTargets_long.push(accountSpaceStruct.lastIP_long);
 
 
-        // The Procedure
+        // The Procedure, start with the accountSpace first IP
         var currentIP = accountSpaceStruct.firstIP;
         var currentIP_long = ip.toLong(currentIP);
         var nextTargetLastIP_long = orderOfIPTargets_long.shift();
         var accountCovered = false;
+        // Keep attempting to hit/cover to the IP targets from orderOfIPTargets_long
         while (accountCovered == false) {
             for (let cider_mask of DECREASING_CIDR_MASKS) {
                 // Construct the next block, with next lower cidr mask.

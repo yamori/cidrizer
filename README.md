@@ -25,6 +25,8 @@ A quick web-app to help accelerate.
 - x placeholder for the text input
 - x 'insert examples' button, with multiple spacing.
 - figure out the error scenarios
+    re-fix the package.json hack
+    remove the console.logs
 - error detect when effective CIDR doesn't match a CIDR block
 - returning+rendering errors
 - better style for the rendered section, clean up the first page.

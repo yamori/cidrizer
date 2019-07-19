@@ -20,8 +20,6 @@ app.get('/', function (req, res) {
 
 app.post('/do_cidr', function (req, res) {
     var userInput = req.body.userInput;
-    console.log("/do_cidr - userInput: " + userInput);
-    console.log(JSON.stringify(userInput));
     var parsedBlocks = cidrizer.parseForBlocks(userInput);
     if (parsedBlocks.errorMessage != undefined) {
         res.render('partials/cidr_error', {errorMessage: parsedBlocks.errorMessage});
@@ -29,7 +27,6 @@ app.post('/do_cidr', function (req, res) {
     }
 
     var results = cidrizer.doLowestBlocking(parsedBlocks.accountSpace, parsedBlocks.cidrBlocks);
-    console.log(results);
     res.render('partials/cidr_results', {ip: ip, results: results});
 });
 
