@@ -16,8 +16,22 @@
     <div class="container">
         <div class="row">
             <div class="col-5">
+                <form>
+                    <div class="form-group">
+                        <input id="user_input_account" class="form-control" type="text" placeholder="(account CIDR here)">
+                    </div>
+                    <div class="form-group">
+                        <textarea id="user_input_cidr" class="form-control" aria-label="With textarea" rows="5" placeholder="10.82.208.0/20 (entire account)&#10; (subsequent lines are sub-blocks)&#10;10.82.218.0/24&#10;10.82.208.0/24 (order doesn't matter)&#10; (try some 'examples' below!)"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button id="blah" class="btn btn-primary">Submit</button>
+                        <button id="insertExamplesButton" class="btn btn-primary" onclick "insertExample();">Insert Example</button>
+                        <button id="clearInputButton" class="btn btn-primary" onclick "insertExample();">Clear</button>
+                    </div>
+                </form>
                 <div class="input-group">
-                    <textarea id="user_input_cidr" class="form-control" aria-label="With textarea"  rows="5" placeholder="10.82.208.0/20 (entire account)&#10; (subsequent lines are sub-blocks)&#10;10.82.218.0/24&#10;10.82.208.0/24 (order doesn't matter)&#10; (try some 'examples' below!)"></textarea>
+                    <input id="user_input_account" class="form-control" type="text" placeholder="(account CIDR here)">
+                    <textarea id="user_input_cidr" class="form-control" aria-label="With textarea" rows="5" placeholder="10.82.208.0/20 (entire account)&#10; (subsequent lines are sub-blocks)&#10;10.82.218.0/24&#10;10.82.208.0/24 (order doesn't matter)&#10; (try some 'examples' below!)"></textarea>
                 </div>
                 <button id="blah" class="btn btn-primary">Submit</button>
                 <button id="insertExamplesButton" class="btn btn-primary" onclick "insertExample();">Insert Example</button>
