@@ -30,6 +30,12 @@ var cidrIzer = function () {
                 return {errorMessage: `Doesn't appear to be valid CIDR: ${cidrBlock}`}
             }
 
+            // Check CIDR precision
+            var ipInstance = ip.cidrSubnet(cidrBlock);
+            if (cidrBlock.includes( ipInstance.networkAddress ) == false) {
+                return {errorMessage: `${cidrBlock} should really be written as ${ipInstance.networkAddress + '/' +  ipInstance.subnetMaskLength}, please correct then try again`}
+            }
+
             if (accountSpace.length == 0) {
                 // 'accountSpace' must get filled first
                 accountSpace = cidrBlock;
@@ -159,7 +165,7 @@ var cidrIzer = function () {
 
 
         // The Procedure was successful.
-        return { errorStruct: errorStruct, 
+        return { errorStruct: errorStruct,
             cidrBlockingResults: cidrBlockingResults,
             accountCIDRBlock: accountSpace }
     }

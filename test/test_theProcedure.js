@@ -39,6 +39,21 @@ describe('CIDRIZER module', function () {
         });
     });
 
+    describe('parsing - detecting non-precise CIDR blocks', function () {
+      it('should provdie an error when an account CIDR block is not precise', function () {
+          var impreciseCIDR = '10.1.0.1/27';
+          var preciseCIDR = '10.1.0.0/27';
+          var results = cidrizer.parseForBlocks(impreciseCIDR);
+          assert.equal(results.errorMessage, `${impreciseCIDR} should really be written as ${preciseCIDR}, please correct then try again`);
+      });
+
+      it('should provdie an error when a sub CIDR block is not precise', function () {
+          var impreciseCIDR = '10.1.1.1/27';
+          var preciseCIDR = '10.1.1.0/27';
+          var results = cidrizer.parseForBlocks('10.1.0.0/20\n' + impreciseCIDR);
+          assert.equal(results.errorMessage, `${impreciseCIDR} should really be written as ${preciseCIDR}, please correct then try again`);
+      });
+    });
 
     describe('core procedure', function () {
 

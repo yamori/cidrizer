@@ -55,12 +55,5 @@ A quick web-app to help accelerate.
 ## Error scenarios
 
 ```
-10.82.208.0/20
-10.82.217.0/24
-```
-
-```
-10.1.0.0/20
-10.1.1.0/24
-10.1.7.0/28
+(none currently)
 ```

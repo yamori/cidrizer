@@ -26,6 +26,7 @@ app.post('/do_cidr', function (req, res) {
         return;
     }
 
+    //TODO, this will also need the != undefined check when presenting doLowestBlocking errors
     var results = cidrizer.doLowestBlocking(parsedBlocks.accountSpace, parsedBlocks.cidrBlocks);
     res.render('partials/cidr_results', {ip: ip, results: results});
 });
