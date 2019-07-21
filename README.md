@@ -27,10 +27,12 @@ A quick web-app to help accelerate.
 - x figure out the error scenarios
     x re-fix the package.json hack
     x remove the console.logs
-- split into two text input fields, placeholder make it more sensical
+- x split into two text input fields, placeholder make it more sensical
 - error detect when effective CIDR doesn't match a CIDR block, unit test
+    creates a custom error message
 - returning+rendering errors
-- better style for the rendered section, clean up the first page.
+- better style for the rendered section, clean up the page for when it first appears.
+    'clear' button returns to this state.
 - highlight the provided blocks, distinguish from the filler blocks
 - Better Readme
 - bring in jquery + bootstrap as assets.

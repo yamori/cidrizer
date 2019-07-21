@@ -15,31 +15,24 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-5">
+            <div class="col-4">
                 <form>
                     <div class="form-group">
-                        <input id="user_input_account" class="form-control" type="text" placeholder="(account CIDR here)">
+                        <input id="user_input_account" class="form-control" type="text" placeholder="(account CIDR here, required)">
                     </div>
                     <div class="form-group">
-                        <textarea id="user_input_cidr" class="form-control" aria-label="With textarea" rows="5" placeholder="10.82.208.0/20 (entire account)&#10; (subsequent lines are sub-blocks)&#10;10.82.218.0/24&#10;10.82.208.0/24 (order doesn't matter)&#10; (try some 'examples' below!)"></textarea>
+                        <textarea id="user_input_cidr" class="form-control" aria-label="With textarea" rows="5" placeholder="(optional CIDR blocks e.g. VPCs or Subnets)"></textarea>
                     </div>
                     <div class="form-group">
-                        <button id="blah" class="btn btn-primary">Submit</button>
-                        <button id="insertExamplesButton" class="btn btn-primary" onclick "insertExample();">Insert Example</button>
-                        <button id="clearInputButton" class="btn btn-primary" onclick "insertExample();">Clear</button>
+                        <button type="button" id="blah" class="btn btn-primary">Submit</button>
+                        <button type="button" id="insertExamplesButton" class="btn btn-primary" onclick "insertExample();">Insert Example</button>
+                        <button type="button" id="clearInputButton" class="btn btn-primary" onclick "insertExample();">Clear</button>
                     </div>
                 </form>
-                <div class="input-group">
-                    <input id="user_input_account" class="form-control" type="text" placeholder="(account CIDR here)">
-                    <textarea id="user_input_cidr" class="form-control" aria-label="With textarea" rows="5" placeholder="10.82.208.0/20 (entire account)&#10; (subsequent lines are sub-blocks)&#10;10.82.218.0/24&#10;10.82.208.0/24 (order doesn't matter)&#10; (try some 'examples' below!)"></textarea>
-                </div>
-                <button id="blah" class="btn btn-primary">Submit</button>
-                <button id="insertExamplesButton" class="btn btn-primary" onclick "insertExample();">Insert Example</button>
-                <button id="clearInputButton" class="btn btn-primary" onclick "insertExample();">Clear</button>
             </div>
 
 
-            <div id="results_div" class="col-7">
+            <div id="results_div" class="col-8">
                 <h4>Account</h4>
                 <table class="table table-sm">
                     <thead>
@@ -103,11 +96,12 @@
     <script>
         $(document).ready(function () {
             $("#blah").click(function () {
-                userInputForm = $('#user_input_cidr').val();
+                userInputAccount = $('#user_input_account').val();
+                userInputCIDRBlocks = $('#user_input_cidr').val();
                 $.ajax({
                     url: window.location + "do_cidr/",
                     type: "POST",
-                    data: JSON.stringify({ userInput: userInputForm }),
+                    data: JSON.stringify({ userInput: userInputAccount + "\n" + userInputCIDRBlocks }),
                     dataType: "html",
                     contentType: "application/json; charset=utf-8",
                     success: function (response, status, http) {
@@ -121,16 +115,24 @@
             });
         });
 
+        // Indices for the following two vars are related.
+        var exampleBank_Account = ['10.82.208.0/20',
+        '192.168.100.14/24',
+        '10.1.0.0/20'];
+        var exampleBank_CIDRBlocks = ['10.82.217.128/27\n10.82.219.0/24',
+        '',
+        '10.1.2.0/24\n10.1.7.0/28'];
+
         var insertedExampleIndex = -1;
-        var exampleBank = ['10.82.208.0/20\n10.82.217.128/27\n10.82.219.0/24', '192.168.100.14/24', '10.1.0.0/20\n10.1.2.0/24\n10.1.7.0/28'];
         function insertExample() {
-            var newIndex = Math.floor(Math.random() * exampleBank.length);
+            var newIndex = Math.floor(Math.random() * exampleBank_Account.length);
             while (newIndex == insertedExampleIndex) {
                 // Don't display the same example consecutively
-                newIndex = Math.floor(Math.random() * exampleBank.length);
+                newIndex = Math.floor(Math.random() * exampleBank_Account.length);
             }
             insertedExampleIndex = newIndex;
-            $('#user_input_cidr').val(exampleBank[insertedExampleIndex]);
+            $('#user_input_account').val(exampleBank_Account[insertedExampleIndex]);
+            $('#user_input_cidr').val(exampleBank_CIDRBlocks[insertedExampleIndex]);
         }
         $('#insertExamplesButton').on('click', function (event) {
             event.preventDefault(); // To prevent following the link (optional)
@@ -140,6 +142,7 @@
         // Clear the input button
         $('#clearInputButton').on('click', function (event) {
             event.preventDefault(); // To prevent following the link (optional)
+            $('#user_input_account').val('');
             $('#user_input_cidr').val('');
         });
     </script>
