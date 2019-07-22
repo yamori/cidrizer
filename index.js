@@ -22,12 +22,16 @@ app.post('/do_cidr', function (req, res) {
     var userInput = req.body.userInput;
     var parsedBlocks = cidrizer.parseForBlocks(userInput);
     if (parsedBlocks.errorMessage != undefined) {
-        res.render('partials/cidr_error', {errorMessage: parsedBlocks.errorMessage});
+        res.render('partials/cidr_warning', {errorMessage: parsedBlocks.errorMessage});
         return;
     }
 
     //TODO, this will also need the != undefined check when presenting doLowestBlocking errors
     var results = cidrizer.doLowestBlocking(parsedBlocks.accountSpace, parsedBlocks.cidrBlocks);
+    if (results.errorStruct.length > 0) {
+      res.render('partials/cidr_danger', {errorStruct: results.errorStruct});
+      return;
+    }
     res.render('partials/cidr_results', {ip: ip, results: results});
 });
 

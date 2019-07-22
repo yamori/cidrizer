@@ -30,10 +30,11 @@ A quick web-app to help accelerate.
 - x split into two text input fields, placeholder make it more sensical
 - x error detect when effective CIDR doesn't match a CIDR block, unit test
     x creates a custom error message
-- returning+rendering errors
+- x returning+rendering errors
 - better style for the rendered section, clean up the page for when it first appears.
     remove the 'clear' button
     help section, and examples, better to hide it so it won't delete someone's work
+- error case, empty fields but submitted
 - highlight the provided blocks, distinguish from the filler blocks
 - Better Readme
 - bring in jquery + bootstrap as assets.
@@ -57,4 +58,15 @@ A quick web-app to help accelerate.
 
 ```
 (none currently)
+```
+
+## Test scenarios
+
+```
+10.82.208.0/20
+
+10.82.217.128/27
+10.82.217.0/24
+10.1.244.0/29
+10.253.244.0/29
 ```

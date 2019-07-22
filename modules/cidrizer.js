@@ -78,11 +78,11 @@ var cidrIzer = function () {
             cidrBlock_lastIPlong = ip.toLong(cidrBlock_lastIP);
 
             if (cidrBlock_firstIPlong < accountSpaceStruct.firstIP_long) {
-                errorStruct.push(`CIDR block (${cidrBlock} first ${cidrBlock_firstIP}) precedes the account space (${accountSpace} first ${accountSpaceStruct.firstIP})`);
+                errorStruct.push(`${cidrBlock} (first ip ${cidrBlock_firstIP}) precedes the account space ${accountSpace} (first ip ${accountSpaceStruct.firstIP})`);
                 invalidCIDRBlocks = true;
             }
             if (cidrBlock_lastIPlong > accountSpaceStruct.lastIP_long) {
-                errorStruct.push(`CIDR block (${cidrBlock} last ${cidrBlock_lastIP}) exceeds the account space (${accountSpace} last ${accountSpaceStruct.lastIP})`);
+                errorStruct.push(`${cidrBlock} (last ip ${cidrBlock_lastIP}) exceeds the account space ${accountSpace} (last ip ${accountSpaceStruct.lastIP})`);
                 invalidCIDRBlocks = true;
             }
         }
@@ -93,7 +93,7 @@ var cidrIzer = function () {
             firstBlock_lastIP = ip.cidrSubnet(cidrBlocks[i - 1]).broadcastAddress;
             firstBlock_lastIP_long = ip.toLong(firstBlock_lastIP);
             if (secondBlock_firstIP_long <= firstBlock_lastIP_long) {
-                errorStruct.push(`CIDR block (${cidrBlocks[i]} first ${secondBlock_firstIP}) overlaps with (${cidrBlocks[i - 1]} last ${firstBlock_lastIP})`);
+                errorStruct.push(`${cidrBlocks[i]} (first ${secondBlock_firstIP}) overlaps with ${cidrBlocks[i - 1]} (last ${firstBlock_lastIP})`);
                 invalidCIDRBlocks = true;
             }
         }
