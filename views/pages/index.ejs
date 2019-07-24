@@ -27,64 +27,18 @@
                     </div>
                     <div class="form-group">
                         <button type="button" id="blah" class="btn btn-primary">Submit</button>
-                        <button type="button" id="insertExamplesButton" class="btn btn-secondary" onclick "insertExample();">Insert Example</button>
-                        <button type="button" id="clearInputButton" class="btn btn-warning" onclick "insertExample();">Clear</button>
+                        <button type="button" id="insertExamplesButton" class="btn btn-secondary" onclick "insertExample();">Insert Random Example</button>
                     </div>
                 </form>
+                <p>Helping sysadmins, developers and devops folk calculate and communicate network space (in this crazy world of subnet masks and base-2 voodoo magic).</p>
             </div>
 
 
-            <div id="results_div" class="col-8">
-                <h4>Account</h4>
-                <table class="table table-sm">
-                    <thead>
-                        <tr>
-                            <th scope="col">CIDR</th>
-                            <th scope="col"># IPs</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>10.82.208.0/20</td>
-                            <td>64</td>
-                            <td>10.82.208.0/20</td>
-                            <td>10.82.208.0/20</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <h4>Lowest CIDR Blocking</h4>
-                <table class="table table-sm">
-                    <thead>
-                        <tr>
-                            <th scope="col">CIDR</th>
-                            <th scope="col"># IPs</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>10.82.208.0/20</td>
-                            <td>64</td>
-                            <td>10.82.208.0/20</td>
-                            <td>10.82.208.0/20</td>
-                        </tr>
-                        <tr>
-                            <td>10.82.208.0/20</td>
-                            <td>64</td>
-                            <td>10.82.208.0/20</td>
-                            <td>10.82.208.0/20</td>
-                        </tr>
-                        <tr>
-                            <td>10.82.208.0/20</td>
-                            <td>64</td>
-                            <td>10.82.208.0/20</td>
-                            <td>10.82.208.0/20</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="col-8">
+              <p>Enter some CIDR blocks, or try a random example!</p>
+              <div class="card">
+                <div id="results_div" class="card-body">(results here...)</div>
+              </div>
             </div>
         </div>
     </div>
@@ -139,13 +93,6 @@
         $('#insertExamplesButton').on('click', function (event) {
             event.preventDefault(); // To prevent following the link (optional)
             insertExample();
-        });
-
-        // Clear the input button
-        $('#clearInputButton').on('click', function (event) {
-            event.preventDefault(); // To prevent following the link (optional)
-            $('#user_input_account').val('');
-            $('#user_input_cidr').val('');
         });
     </script>
 

@@ -32,8 +32,10 @@ A quick web-app to help accelerate.
     x creates a custom error message
 - x returning+rendering errors
 - better style for the rendered section, clean up the page for when it first appears.
-    remove the 'clear' button
-    help section, and examples, better to hide it so it won't delete someone's work
+    x remove the 'clear' button
+    x help section, and examples, better to hide it so it won't delete someone's work
+    x 2^32-n and Available hosts (with hover)
+- deploy to Lambda, rt 53 and purchase domain.
 - error case, empty fields but submitted
 - highlight the provided blocks, distinguish from the filler blocks
 - Better Readme

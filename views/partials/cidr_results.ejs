@@ -3,7 +3,8 @@
     <thead>
         <tr>
             <th scope="col">CIDR</th>
-            <th scope="col"># Hosts</th>
+            <th scope="col">2^(32-n)</th>
+            <th scope="col">Available</th>
             <th scope="col">First</th>
             <th scope="col">Last</th>
         </tr>
@@ -12,6 +13,9 @@
         <tr>
             <td>
                 <%= results.accountCIDRBlock %>
+            </td>
+            <td>
+                <%= ip.cidrSubnet(results.accountCIDRBlock).length %>
             </td>
             <td>
                 <%= ip.cidrSubnet(results.accountCIDRBlock).numHosts %>
@@ -27,12 +31,13 @@
 </table>
 
 <% if (results.cidrBlockingResults.length > 1) { %>
-    <h3>Lowest CIDR Blocking</h3>
+    <h3>Simplest Coverage CIDR Blocking (SCCB)</h3>
     <table class="table table-sm">
         <thead>
             <tr>
                 <th scope="col">CIDR</th>
-                <th scope="col"># Hosts</th>
+                <th scope="col">2^(32-n)</th>
+                <th scope="col">Available</th>
                 <th scope="col">First</th>
                 <th scope="col">Last</th>
             </tr>
@@ -42,6 +47,9 @@
                 <tr>
                     <td>
                         <%= cidrBlock %>
+                    </td>
+                    <td>
+                        <%= ip.cidrSubnet(cidrBlock).length %>
                     </td>
                     <td>
                         <%= ip.cidrSubnet(cidrBlock).numHosts %>
