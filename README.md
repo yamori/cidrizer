@@ -35,8 +35,9 @@ A quick web-app to help accelerate.
     x remove the 'clear' button
     x help section, and examples, better to hide it so it won't delete someone's work
     x 2^32-n and Available hosts (with hover)
-- convert to lambda
-- deploy to Lambda, rt 53 and purchase domain.
+- x convert to lambda
+- one entry, for both the serverless and local dev
+- rt 53, and point to the API GW (and then Lambda)
 - warning if the sub-mask is below AWS.
 - error case, empty fields but submitted
 - highlight the provided blocks, distinguish from the filler blocks
@@ -66,6 +67,8 @@ A quick web-app to help accelerate.
 
 ## Test scenarios
 
+Lots of overlapping and range violations...
+
 ```
 10.82.208.0/20
 
@@ -73,4 +76,15 @@ A quick web-app to help accelerate.
 10.82.217.0/24
 10.1.244.0/29
 10.253.244.0/29
+```
+
+Good test...
+
+```
+10.82.208.0/20
+
+10.82.218.128/27
+10.82.217.0/24
+10.82.222.0/29
+10.82.221.0/29
 ```
