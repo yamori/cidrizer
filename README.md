@@ -35,7 +35,9 @@ A quick web-app to help accelerate.
     x remove the 'clear' button
     x help section, and examples, better to hide it so it won't delete someone's work
     x 2^32-n and Available hosts (with hover)
+- convert to lambda
 - deploy to Lambda, rt 53 and purchase domain.
+- warning if the sub-mask is below AWS.
 - error case, empty fields but submitted
 - highlight the provided blocks, distinguish from the filler blocks
 - Better Readme

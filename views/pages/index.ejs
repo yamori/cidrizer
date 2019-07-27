@@ -26,8 +26,8 @@
                         <textarea id="user_input_cidr" class="form-control" aria-label="With textarea" rows="5" placeholder="(subset CIDR blocks e.g. VPCs or Subnets)"></textarea>
                     </div>
                     <div class="form-group">
-                        <button type="button" id="blah" class="btn btn-primary">Submit</button>
-                        <button type="button" id="insertExamplesButton" class="btn btn-secondary" onclick "insertExample();">Insert Random Example</button>
+                        <button type="button" id="blah" class="btn btn-primary">Calculate</button>
+                        <button type="button" id="insertExamplesButton" class="btn btn-secondary" onclick "insertExample();">(insert random example)</button>
                     </div>
                 </form>
                 <p>Helping sysadmins, developers and devops folk calculate and communicate network space (in this crazy world of subnet masks and base-2 voodoo magic).</p>
@@ -35,7 +35,6 @@
 
 
             <div class="col-8">
-              <p>Enter some CIDR blocks, or try a random example!</p>
               <div class="card">
                 <div id="results_div" class="card-body">(results here...)</div>
               </div>

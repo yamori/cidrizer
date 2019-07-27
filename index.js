@@ -7,7 +7,7 @@ var ip = require('ip');
 
 var cidrizer = require('./modules/cidrizer.js');
 
-const PORT_NUMBER = 8080;
+const PORT_NUMBER = process.env.CIDRIZER_PORT || 80;
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
