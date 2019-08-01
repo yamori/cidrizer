@@ -38,7 +38,8 @@ A quick web-app to help accelerate.
 - x convert to lambda
 - one entry, for both the serverless and local dev
 - rt 53, and point to the API GW (and then Lambda)
-- warning if the sub-mask is below AWS.
+- google analytics
+- warning if the sub-mask is below AWS. minimum, this is a 'caution' bootstrap color
 - error case, empty fields but submitted
 - highlight the provided blocks, distinguish from the filler blocks
 - Better Readme
