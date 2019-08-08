@@ -36,9 +36,14 @@ A quick web-app to help accelerate.
     x help section, and examples, better to hide it so it won't delete someone's work
     x 2^32-n and Available hosts (with hover)
 - x convert to lambda
+- x correct the UX and verbiage
+- x spinner
+- x deploy
+- put the sorted blocks back into the 2nd field
+- point the domain to the API gateway
 - one entry, for both the serverless and local dev
 - rt 53, and point to the API GW (and then Lambda)
-- google analytics
+- adsense campaign, then google analytics?
 - warning if the sub-mask is below AWS. minimum, this is a 'caution' bootstrap color
 - error case, empty fields but submitted
 - highlight the provided blocks, distinguish from the filler blocks

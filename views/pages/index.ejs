@@ -15,26 +15,35 @@
         <div class="row">
             <div class="col-4">
                 <form>
-                    <h4>CIDR</h4>
+                    <h4>Account Space</h4>
                     <div class="form-group">
-                        <input id="user_input_account" class="form-control" type="text" placeholder="ex. 10.1.0.0/20">
+                        <input id="user_input_account" class="form-control" type="text" placeholder="CIDR e.g. 10.1.0.0/20">
                     </div>
-                    <h4>Sub CIDR Blocks (optional)</h4>
+                    <h5>Optional, add VPCs/Subnet CIDR blocks inside of the account above...</h5>
                     <div class="form-group">
-                        <textarea id="user_input_cidr" class="form-control" aria-label="With textarea" rows="5" placeholder="(subset CIDR blocks e.g. VPCs or subnets)"></textarea>
+                        <textarea id="user_input_cidr" class="form-control" aria-label="With textarea" rows="5" placeholder="CIDR e.g. 10.1.0.0/24"></textarea>
                     </div>
                     <div class="form-group">
                         <button type="button" id="blah" class="btn btn-primary">Calculate</button>
+                    </div>
+                </form>
+                <p>Press 'Calculate' above, or use the button below to insert a random example...</p>
+                <form>
+                    <div class="form-group">
                         <button type="button" id="insertExamplesButton" class="btn btn-secondary" onclick "insertExample();">(insert random example)</button>
                     </div>
                 </form>
-                <p>Helping sysadmins and devops folk calculate and communicate network space (in this crazy world of subnet masks and base-2 voodoo magic).</p>
             </div>
 
 
             <div class="col-8">
               <div class="card">
                 <div id="results_div" class="card-body">(results here...)</div>
+                <div class="d-none d-flex justify-content-center">
+                  <div id="results_spinner" class="spinner-border" style="width: 3rem; height: 3rem; display: none; margin-top: 20px; margin-bottom: 20px;" role="status">
+                    <span class="sr-only">Loading...</span>
+                  </div>
+                </div>
               </div>
             </div>
         </div>
@@ -49,6 +58,9 @@
     <script>
         $(document).ready(function () {
             $("#blah").click(function () {
+                $('#results_div').hide();
+                $('#results_spinner').show();
+
                 userInputAccount = $('#user_input_account').val();
                 userInputCIDRBlocks = $('#user_input_cidr').val();
                 $.ajax({
@@ -59,8 +71,12 @@
                     contentType: "application/json; charset=utf-8",
                     success: function (response, status, http) {
                         $("#results_div").html(response);
+                        $('#results_spinner').hide();
+                        $('#results_div').show();
                     },
                     error: function (error) {
+                        $('#results_spinner').hide();
+                        $('#results_div').show();
                         alert('hmm, something went wrong');
                         // ... something unspecified.
                     }
