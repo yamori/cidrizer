@@ -23,7 +23,7 @@ provider:
   name: aws
   runtime: nodejs10.x
   stage: dev
-  region: eu-west-2
+  region: us-east-1 # tried eu-west-2 previously, but issues with Cert Manager
   memorySize: 256 # Default is 1024, 256 seems to work.
 
 # you can add statements to the Lambda function's IAM Role here
@@ -75,3 +75,14 @@ functions:
        path: /do_cidr/{proxy+}
        method: POST
        cors: true
+
+plugins:
+  - serverless-domain-manager
+
+custom:
+  customDomain:
+    domainName: www.cidrizer.com
+    basePath: ''
+    stage: ${self:provider.stage}
+    createRoute53Record: true
+    endpointType: regional

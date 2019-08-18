@@ -9,7 +9,9 @@
   },
   "author": "Kindzerske, Matthew",
   "license": "ISC",
-  "devDependencies": {},
+  "devDependencies": {
+    "serverless-domain-manager": "^3.3.0"
+  },
   "dependencies": {
     "body-parser": "^1.19.0",
     "ejs": "^2.5.5",
