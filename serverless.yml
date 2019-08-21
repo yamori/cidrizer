@@ -75,14 +75,3 @@ functions:
        path: /do_cidr/{proxy+}
        method: POST
        cors: true
-
-plugins:
-  - serverless-domain-manager
-
-custom:
-  customDomain:
-    domainName: www.cidrizer.com
-    basePath: ''
-    stage: ${self:provider.stage}
-    createRoute53Record: true
-    endpointType: regional

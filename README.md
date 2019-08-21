@@ -39,9 +39,10 @@ A quick web-app to help accelerate.
 - x correct the UX and verbiage
 - x spinner
 - x deploy
-- Put CloudFront in front, to rediret http to https for the GET.
+- x Put CloudFront in front, to rediret http to https for the GET.
   https://stackoverflow.com/questions/47311081/redirect-http-requests-to-https-on-aws-api-gateway-using-custom-domains
 - When url doesn't have the trailing '/', we get 'something went wrong'
+- better explanation of what the site does, in the results or above.
 - put the sorted blocks back into the 2nd field
 - one entry, for both the serverless and local dev
 - adsense campaign, then google analytics?
