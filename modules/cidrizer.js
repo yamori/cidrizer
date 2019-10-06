@@ -19,8 +19,15 @@ var cidrIzer = function () {
         var accountSpace = "";
         var cidrBlocks = [];
         var cidrBlock;
+        var indexOfCommentStart = 0;
         for (index = 0; index < linesSplit.length; ++index) {
             cidrBlock = linesSplit[index].trim();
+
+            // Remove any comments
+            indexOfCommentStart = cidrBlock.indexOf("#");
+            if (indexOfCommentStart > 0) { // Test if commet present
+              cidrBlock = cidrBlock.slice(0, indexOfCommentStart).trim();
+            }
 
             // Don't try to arse an empty line.
             if (cidrBlock.length == 0) { continue; }

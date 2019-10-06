@@ -96,3 +96,7 @@ Good test...
 10.82.222.0/29
 10.82.221.0/29
 ```
+
+### Test with curl
+
+`curl -XPOST -H "Content-type: application/json" -d '{ "userInput": "10.0.0.0/18 \n 10.0.0.0/22" }' 'https://www.cidrizer.com/do_cidr/'`

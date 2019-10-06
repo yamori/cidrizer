@@ -15,24 +15,22 @@
         <div class="row">
             <div class="col-4">
                 <form>
-                    <h4>Account Space</h4>
                     <div class="form-group">
-                        <input id="user_input_account" class="form-control" type="text" placeholder="CIDR e.g. 10.1.0.0/20">
-                    </div>
-                    <h6>Optional, add VPCs/Subnet CIDR blocks inside of the account above...</h6>
-                    <div class="form-group">
-                        <textarea id="user_input_cidr" class="form-control" aria-label="With textarea" rows="5" placeholder="CIDR e.g. 10.1.0.0/24"></textarea>
+                        <textarea id="user_input_cidr" class="form-control" aria-label="With textarea" rows="6" placeholder="(see below example for syntax)">10.82.208.0/20   # Account space
+10.82.217.128/27 # vpc1
+10.82.219.0/24   # vpc2</textarea>
                     </div>
                     <div class="form-group">
-                        <button type="button" id="blah" class="btn btn-primary">Calculate</button>
+                        <button type="button" id="calculate_id" class="btn btn-primary">Calculate</button>
                     </div>
                 </form>
-                <p>Press 'Calculate' above, or use the button below to insert a random example...</p>
-                <form>
-                    <div class="form-group">
-                        <button type="button" id="insertExamplesButton" class="btn btn-secondary" onclick "insertExample();">(insert random example)</button>
-                    </div>
-                </form>
+                <h4>Syntax Explained</h4>
+                <ul>
+                  <li>The first line is the CIDR of your account space or VPC</li>
+                  <li>Subsequent lines should be subset CIDRs of the first line!</li>
+                  <li>Press Calculate! Try the example above :-)</li>
+                  <li>Or try a <button id="insertExamplesButton" type="button" class="btn btn-outline-secondary btn-sm">Random Example</button></li>
+                </ul>
             </div>
 
 
@@ -58,16 +56,15 @@
 
     <script>
         $(document).ready(function () {
-            $("#blah").click(function () {
+            $("#calculate_id").click(function () {
                 $('#results_div').hide();
                 $('#results_spinner').show();
 
-                userInputAccount = $('#user_input_account').val();
                 userInputCIDRBlocks = $('#user_input_cidr').val();
                 $.ajax({
                     url: window.location + "do_cidr/",
                     type: "POST",
-                    data: JSON.stringify({ userInput: userInputAccount + "\n" + userInputCIDRBlocks }),
+                    data: JSON.stringify({ userInput: userInputCIDRBlocks }),
                     dataType: "html",
                     contentType: "application/json; charset=utf-8",
                     success: function (response, status, http) {
@@ -83,30 +80,26 @@
                     }
                 });
             });
-        });
 
-        // Indices for the following two vars are related.
-        var exampleBank_Account = ['10.82.208.0/20',
-        '192.168.100.0/24',
-        '10.1.0.0/20'];
-        var exampleBank_CIDRBlocks = ['10.82.217.128/27\n10.82.219.0/24',
-        '',
-        '10.1.2.0/24\n10.1.7.0/28'];
+          // Indices for the following two vars are related.
+          var exampleBank = ['10.80.0.0/16  # Client x account\n10.80.2.0/24  # egress\n10.80.3.0/24  # prod_1\n10.80.16.0/22 # sandbox 1',
+            '10.0.0.0/20   # Account 34\n10.0.4.0/22   # btcn miners\n10.0.2.128/25 # infra support\n10.0.1.128/25 # ML learners',
+            '10.10.10.0/24   # Client 98\n10.10.10.32/29  # bastion(s)\n10.10.10.128/29 # content srvs'];
 
-        var insertedExampleIndex = -1;
-        function insertExample() {
-            var newIndex = Math.floor(Math.random() * exampleBank_Account.length);
+          var insertedExampleIndex = -1;
+          function insertExample() {
+            var newIndex = Math.floor(Math.random() * exampleBank.length);
             while (newIndex == insertedExampleIndex) {
-                // Don't display the same example consecutively
-                newIndex = Math.floor(Math.random() * exampleBank_Account.length);
+              // Don't display the same example consecutively
+              newIndex = Math.floor(Math.random() * exampleBank.length);
             }
             insertedExampleIndex = newIndex;
-            $('#user_input_account').val(exampleBank_Account[insertedExampleIndex]);
-            $('#user_input_cidr').val(exampleBank_CIDRBlocks[insertedExampleIndex]);
-        }
-        $('#insertExamplesButton').on('click', function (event) {
+            $('#user_input_cidr').val(exampleBank[insertedExampleIndex]);
+          }
+          $('#insertExamplesButton').on('click', function (event) {
             event.preventDefault(); // To prevent following the link (optional)
             insertExample();
+          });
         });
     </script>
 

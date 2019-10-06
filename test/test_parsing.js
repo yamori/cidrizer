@@ -24,6 +24,16 @@ describe('CIDRIZER module', function () {
             assert.equal(results.cidrBlocks.length, 2);
         });
 
+        it('should correctly remove comments', function () {
+            var firstIP = "10.1.1.1/32  # comment 1  ";
+            var inputText = `  ${firstIP}   \n10.1.1.2/32#comment2\n10.1.1.3/32`;
+            var results = cidrizer.parseForBlocks(inputText);
+
+            // Parses 3 lines
+            assert.equal(results.accountSpace.toUpperCase() === firstIP.slice(0,11).toUpperCase(), true);
+            assert.equal(results.cidrBlocks.length, 2);
+        });
+
         it('should throw an error if regex doesnt match', function () {
             var badAccountSpace = "10.1.1/32";
             var okAccountSpace = "10.1.1.0/28";
