@@ -56,35 +56,39 @@
 
     <script>
         $(document).ready(function () {
-            $("#calculate_id").click(function () {
-                $('#results_div').hide();
-                $('#results_spinner').show();
+          function ajaxCIDR_calc() {
+            $('#results_div').hide();
+            $('#results_spinner').show();
 
-                userInputCIDRBlocks = $('#user_input_cidr').val();
-                $.ajax({
-                    url: window.location + "do_cidr/",
-                    type: "POST",
-                    data: JSON.stringify({ userInput: userInputCIDRBlocks }),
-                    dataType: "html",
-                    contentType: "application/json; charset=utf-8",
-                    success: function (response, status, http) {
-                        $("#results_div").html(response);
-                        $('#results_spinner').hide();
-                        $('#results_div').show();
-                    },
-                    error: function (error) {
-                        $('#results_spinner').hide();
-                        $('#results_div').show();
-                        alert('hmm, something went wrong');
-                        // ... something unspecified.
-                    }
-                });
+            userInputCIDRBlocks = $('#user_input_cidr').val();
+            $.ajax({
+              url: window.location + "do_cidr/",
+              type: "POST",
+              data: JSON.stringify({ userInput: userInputCIDRBlocks }),
+              dataType: "html",
+              contentType: "application/json; charset=utf-8",
+              success: function (response, status, http) {
+                $("#results_div").html(response);
+                $('#results_spinner').hide();
+                $('#results_div').show();
+              },
+              error: function (error) {
+                $('#results_spinner').hide();
+                $('#results_div').show();
+                alert('hmm, something went wrong');
+                // ... something unspecified.
+              }
             });
+          }
+
+          $("#calculate_id").on('click', function (event) {
+            ajaxCIDR_calc();
+          });
 
           // Indices for the following two vars are related.
           var exampleBank = ['10.80.0.0/16  # Client x account\n10.80.2.0/24  # egress\n10.80.3.0/24  # prod_1\n10.80.16.0/22 # sandbox 1',
             '10.0.0.0/20   # Account 34\n10.0.4.0/22   # btcn miners\n10.0.2.128/25 # infra support\n10.0.1.128/25 # ML learners',
-            '10.10.10.0/24   # Client 98\n10.10.10.32/29  # bastion(s)\n10.10.10.128/29 # content srvs'];
+            '10.10.10.0/24   # Client 3\n10.10.10.32/29  # bastion(s)\n10.10.10.128/29 # content srvs'];
 
           var insertedExampleIndex = -1;
           function insertExample() {
@@ -99,6 +103,12 @@
           $('#insertExamplesButton').on('click', function (event) {
             event.preventDefault(); // To prevent following the link (optional)
             insertExample();
+            $('#user_input_cidr').addClass('blue_bg');
+            setTimeout(function() {
+              $('#user_input_cidr').addClass('fade_out');
+              setTimeout(function() { $('#user_input_cidr').removeClass('blue_bg fade_out'); }, 510 ); // 1010 > 1000ms
+            }, 150);
+            ajaxCIDR_calc();
           });
         });
     </script>
