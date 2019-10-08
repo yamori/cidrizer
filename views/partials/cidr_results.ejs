@@ -40,6 +40,7 @@
                 <th scope="col">Available</th>
                 <th scope="col">First</th>
                 <th scope="col">Last</th>
+                <script>var csvTableContent = "CIDR,2^(32-n),Available,First,Last\n";</script>
             </tr>
         </thead>
         <tbody>
@@ -47,21 +48,35 @@
                 <tr>
                     <td>
                         <%= cidrBlock %>
+                        <script>csvTableContent = csvTableContent + "<%= cidrBlock %>,";</script>
                     </td>
                     <td>
                         <%= ip.cidrSubnet(cidrBlock).length %>
+                        <script>csvTableContent = csvTableContent + "<%= ip.cidrSubnet(cidrBlock).length %>,";</script>
                     </td>
                     <td>
                         <%= ip.cidrSubnet(cidrBlock).numHosts %>
+                        <script>csvTableContent = csvTableContent + "<%= ip.cidrSubnet(cidrBlock).numHosts %>,";</script>
                     </td>
                     <td>
                         <%= ip.cidrSubnet(cidrBlock).networkAddress %>
+                        <script>csvTableContent = csvTableContent + "<%= ip.cidrSubnet(cidrBlock).networkAddress %>,";</script>
                     </td>
                     <td>
                         <%= ip.cidrSubnet(cidrBlock).broadcastAddress %>
+                        <script>csvTableContent = csvTableContent + "<%= ip.cidrSubnet(cidrBlock).broadcastAddress %>,\n";</script>
                     </td>
                 </tr>
                 <% } %>
         </tbody>
     </table>
-    <% } %>
+
+
+    <div class="row justify-content-center">
+      <button id="cidrTableCopy" type="button" class="btn btn-outline-success btn-sm" data-clipboard-text="Just because you can doesn't mean you should — clipboard.js">Copy to Clipboard (csv)</button>
+    </div>
+    <script>
+      $("#cidrTableCopy").attr("data-clipboard-text",csvTableContent);
+      new ClipboardJS('#cidrTableCopy');
+    </script>
+<% } %>
