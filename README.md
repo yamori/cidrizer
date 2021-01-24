@@ -2,11 +2,11 @@
 
 It's hard to mange CIDR space in a big team.
 
-Here's a light web-app to help accelerate.
+Here's a light web-app to help organize.
 
 ## Commands
 
-`npm start`, with file `test/test_theProcedure.js` having a good overview of what the calculations are doing.
+`npm start`, (see file `test/test_theProcedure.js` which has good test coverage of what the calculations actually do)
 
 `npm start`
 
