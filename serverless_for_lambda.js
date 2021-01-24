@@ -35,8 +35,5 @@ app.post('/do_cidr', function (req, res) {
     res.render('partials/cidr_results', {ip: ip, results: results});
 });
 
-// app.listen(PORT_NUMBER);
-// console.log(`${PORT_NUMBER} is the magic port`);
-
 const sls = require('serverless-http'); //Handle the GET endpoint on the root route /
 module.exports.server = sls(app);

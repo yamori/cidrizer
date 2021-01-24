@@ -1,14 +1,19 @@
 # CIDRizer
 
-It's hard to mange CIDR space in a big team.
+It's hard to manage CIDR space in a big team.
 
 Here's a light web-app to help organize.
 
 ## Commands
 
-`npm start`, (see file `test/test_theProcedure.js` which has good test coverage of what the calculations actually do)
+`npm start`
+
+- (see file `test/test_theProcedure.js` which has good test coverage of what the calculations actually do)
 
 `npm start`
+
+- please note that the above invokes `index.js`
+- if deployed via `serverless.yml`, there exists a nearly equivelant `serverless_for_lambda.js` which instead exports via the `serverless-http` module
 
 ## Test scenarios
 
@@ -66,15 +71,13 @@ Lots of overlapping and range violations...
 yields
 
 ```
-
 10.1.244.0/29 (first ip 10.1.244.0) precedes the account space 10.82.208.0/20 (first ip 10.82.208.0)
 
 10.253.244.0/29 (last ip 10.253.244.7) exceeds the account space 10.82.208.0/20 (last ip 10.82.223.255)
 
 10.82.217.128/27 (first 10.82.217.128) overlaps with 10.82.217.0/24 (last 10.82.217.255)
-
 ```
 
 ## Invoke with a Curl
 
-`curl -XPOST -H "Content-type: application/json" -d '{ "userInput": "10.0.0.0/18 \n 10.0.0.0/22" }' 'https://www.cidrizer.com/do_cidr/'`
+`curl -XPOST -H "Content-type: application/json" -d '{ "userInput": "10.0.0.0/18 \n 10.0.0.0/22" }' 'http://localhost:80/do_cidr/'`
