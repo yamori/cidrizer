@@ -6,7 +6,7 @@ Here's a light web-app to help organize.
 
 ## Commands
 
-`npm start`
+`npm test`
 
 - (see file `test/test_theProcedure.js` which has good test coverage of what the calculations actually do)
 
