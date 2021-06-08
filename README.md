@@ -25,6 +25,8 @@ Here's a web-app to help organize.
 
 ### Valid test
 
+(first line of input is always the umbrealla VPC/Account, and subsequent lines are inferred as fitting within line 1's space)
+
 ```
 10.10.10.0/24   # Client 3
 10.10.10.32/29  # bastion(s)
