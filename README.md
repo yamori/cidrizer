@@ -1,8 +1,14 @@
 # CIDRizer
 
+Currently live at [cidrizer.com](https://www.cidrizer.com)
+
+Motivation:
+
+> "Our VPC was define as `10.82.208.0/20`, and so far subnets of `10.82.217.128/27` and `10.82.219.0/24`, but what IP and ranges do we have left?!..."
+
 It's hard to manage CIDR space in a big team.
 
-Here's a light web-app to help organize.
+Here's a web-app to help organize.
 
 ## Commands
 
