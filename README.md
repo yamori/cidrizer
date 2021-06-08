@@ -12,6 +12,10 @@ Here's a web-app to help organize.
 
 ## Commands
 
+Developed with:
+- npm`v6.13`
+- node`v13.7`
+
 `npm test`
 
 - (see file `test/test_theProcedure.js` which has good test coverage of what the calculations actually do)
