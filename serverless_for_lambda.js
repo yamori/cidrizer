@@ -20,6 +20,7 @@ app.get('/', function (req, res) {
 
 app.post('/do_cidr', function (req, res) {
     var userInput = req.body.userInput;
+    console.log(`UserInput: ${userInput}`);
     var parsedBlocks = cidrizer.parseForBlocks(userInput);
     if (parsedBlocks.errorMessage != undefined) {
         res.render('partials/cidr_warning', {errorMessage: parsedBlocks.errorMessage});
