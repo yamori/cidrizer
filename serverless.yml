@@ -21,7 +21,7 @@ app: cidrizer-lambda
 
 provider:
   name: aws
-  runtime: nodejs10.x
+  runtime: nodejs18.x
   stage: dev
   region: us-east-1 # tried eu-west-2 previously, but issues with Cert Manager
   memorySize: 256 # Default is 1024, 256 seems to work.
